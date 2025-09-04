@@ -1,4 +1,4 @@
-package com.supervital.feature
+package com.supervital.feature.screens.products
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,10 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.supervital.feature.theme.ProductsDBComposeTheme
+import com.supervital.feature.screens.products.theme.ProductsDBComposeTheme
 
 @Composable
-fun MainScreen(viewModel: ProductsViewModel = hiltViewModel()) {
+fun ProductsScreen(viewModel: ProductsViewModel = hiltViewModel()) {
 
     val productStateList = viewModel.getData()
         .collectAsState(initial = emptyList())
@@ -59,3 +59,26 @@ fun MainScreen(viewModel: ProductsViewModel = hiltViewModel()) {
         }
     }
 }
+
+/*
+private val scanLauncher = registerForActivityResult(
+    ScanContract()
+) { result ->
+    result.contents?.let {
+        Toast.makeText(
+            this,
+            "Scan data: ${it}", Toast.LENGTH_SHORT
+        ).show()
+    }
+}
+
+private fun scan() {
+    val options = ScanOptions()
+    options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
+    options.setPrompt("Scan a barcode")
+    options.setCameraId(0)
+    options.setBeepEnabled(false)
+    options.setBarcodeImageEnabled(true)
+    scanLauncher.launch(options)
+}
+*/

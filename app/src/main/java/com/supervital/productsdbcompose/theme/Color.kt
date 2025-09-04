@@ -1,4 +1,4 @@
-package com.supervital.feature.theme
+package com.supervital.navigationcompose.theme
 
 import androidx.compose.ui.graphics.Color
 

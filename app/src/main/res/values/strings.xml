@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Products DB</string>
+    
+    <string name="top_bar_title_home">Главный экран</string>
+    <string name="top_bar_title_contacts">Контакты</string>
+    <string name="top_bar_title_weather">Погода</string>
+    <string name="top_bar_title_products">Продукты</string>
+    <string name="top_bar_title_about">О программе</string>
+
 </resources>

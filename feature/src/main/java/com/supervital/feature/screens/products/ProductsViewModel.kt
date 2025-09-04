@@ -1,4 +1,4 @@
-package com.supervital.feature
+package com.supervital.feature.screens.products
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

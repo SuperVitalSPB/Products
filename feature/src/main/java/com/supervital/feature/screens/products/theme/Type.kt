@@ -1,4 +1,4 @@
-package com.supervital.feature.theme
+package com.supervital.feature.screens.products.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.supervital.feature.theme
+package com.supervital.feature.screens.products.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
