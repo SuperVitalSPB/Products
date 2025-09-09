@@ -6,5 +6,5 @@
     <string name="top_bar_title_weather">Погода</string>
     <string name="top_bar_title_products">Продукты</string>
     <string name="top_bar_title_about">О программе</string>
-
+    <string name="back_button">Back</string>
 </resources>

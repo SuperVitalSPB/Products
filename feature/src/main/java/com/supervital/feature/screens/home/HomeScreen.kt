@@ -1,15 +1,11 @@
 package com.supervital.feature.screens.home
 
 import android.widget.Toast
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -19,11 +15,11 @@ import androidx.compose.ui.unit.sp
 fun HomeScreen() {
     Text("Home Page Screen Content",
         fontSize = 30.sp,
-        textAlign = TextAlign.Center,
+        textAlign = TextAlign.Right,
         modifier = Modifier.padding(top = 15.dp)
     )
 
-    Surface(
+/*    Surface(
         modifier = Modifier.padding(top = 40.dp),
         color = Color.Transparent,
         shadowElevation = 4.dp,
@@ -47,7 +43,7 @@ fun HomeScreen() {
         }
     }
 
-    ToastScreen()
+    ToastScreen()*/
 }
 
 @Composable

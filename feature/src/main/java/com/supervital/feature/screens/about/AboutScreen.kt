@@ -14,7 +14,7 @@ fun AboutScreen() {
     Box {
         Text("About Page Screen Content",
             fontSize = 30.sp,
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Right,
             modifier = Modifier.padding(top = 15.dp))
     }
 }

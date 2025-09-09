@@ -9,36 +9,44 @@ import androidx.compose.material.icons.filled.Star
 import com.supervital.productsdbcompose.R
 
 object NavBarItems {
-    val BarItems = listOf(
+    val barItems = listOf(
         BarItem(
-            title = "Home",
+            bottomTitle = "Home",
             image = Icons.Filled.Home,
             route = NavRoutes.Home.route,
-            top_title_res = R.string.top_bar_title_home
+            topTitleRes = R.string.top_bar_title_home
         ),
         BarItem(
-            title = "Contacts",
+            bottomTitle = "Contacts",
             image = Icons.Filled.Face,
             route = NavRoutes.Contacts.route,
-            top_title_res = R.string.top_bar_title_contacts
+            topTitleRes = R.string.top_bar_title_contacts
         ),
         BarItem(
-            title = "Weather",
+            bottomTitle = "Weather",
             image = Icons.Filled.DateRange,
             route = NavRoutes.Weather.route,
-            top_title_res = R.string.top_bar_title_weather
+            topTitleRes = R.string.top_bar_title_weather
         ),
         BarItem(
-            title = "Products",
+            bottomTitle = "Products",
             image = Icons.Filled.Star,
             route = NavRoutes.Products.route,
-            top_title_res = R.string.top_bar_title_products
+            topTitleRes = R.string.top_bar_title_products
         ),
         BarItem(
-            title = "About",
+            bottomTitle = "About",
             image = Icons.Filled.Info,
             route = NavRoutes.About.route,
-            top_title_res = R.string.top_bar_title_about
+            topTitleRes = R.string.top_bar_title_about
         )
     )
+
+    fun getBarItem(route: String?): BarItem  {
+        val found = barItems.filter { barItem ->
+            barItem.route == route
+        }
+        return if (found == emptyList<BarItem>()) barItems[0] else found[0]
+    }
+
 }
