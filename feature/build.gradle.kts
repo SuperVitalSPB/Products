@@ -47,6 +47,9 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation(libs.hilt.android)
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.lifecycle.viewmodel.compose.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 

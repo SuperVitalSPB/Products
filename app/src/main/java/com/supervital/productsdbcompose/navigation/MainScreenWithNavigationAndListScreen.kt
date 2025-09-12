@@ -74,7 +74,7 @@ fun MainScreenWithNavigationAndListScreen(
                     HomeScreen()
                 }
                 composable(NavRoutes.Contacts.route) {
-                    // ContactsScreen()
+                    ContactsScreen()
                 }
                 composable(NavRoutes.Weather.route) {
                     WeatherScreen()

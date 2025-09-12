@@ -1,2 +1,3 @@
 <resources>
+    <string name="user_name_exists">User name Exists</string>
 </resources>
