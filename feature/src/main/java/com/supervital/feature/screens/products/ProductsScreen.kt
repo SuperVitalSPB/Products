@@ -14,60 +14,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-
-
-@Composable
-fun MyLazyColumn() {
-    // Создаем список данных (например, строки)
-    val itemList = List(100) { "Элемент списка №$it" }
-
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        // `items` используется для создания нескольких элементов списка из коллекции
-        items(itemList) { item ->
-            Text(
-                text = item,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
-    }
-}
-
-@Composable
-fun xxProductsScreen(viewModel: ProductsViewModel = hiltViewModel()) {
-    Box(modifier = Modifier.fillMaxSize() ) {
-        // MyLazyColumn()
-        LazyColumn(modifier = Modifier.matchParentSize()) {
-            items(emptyList<String>()/*listOf("Элемент 1", "Элемент 2", "Элемент 3")*/) { item ->
-                Text(item)
-            }
-        }
-    }
-}
 
 @Composable
 fun ProductsScreen(viewModel: ProductsViewModel = hiltViewModel()) {
 
     val productStateList = viewModel.getData()
         .collectAsState(initial = emptyList())
-    var counter by remember { mutableIntStateOf(0) }
-
     val listState = rememberLazyListState()
-    val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(productStateList.value.size) {
         listState.animateScrollToItem(index = productStateList.value.size)
     }
 
-    Box(modifier = Modifier.fillMaxSize() ) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .padding(bottom = 16.dp)
+    ) {
     // ProductsDBComposeTheme {
         /*Column(
             Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally
@@ -80,20 +46,21 @@ fun ProductsScreen(viewModel: ProductsViewModel = hiltViewModel()) {
             ) {
                 items(productStateList.value) { product ->
                     Text(
-                        modifier = Modifier.fillMaxWidth(), text = product.name, textAlign = TextAlign.Center
+                        modifier = Modifier.fillMaxWidth(), text = product.name, textAlign = TextAlign.Left
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                 }
             }
-            Button(onClick = {
-                // scan()
-                viewModel.insertProduct(
-                    "Product ${productStateList.value.size + 1}", "dfasgsdfgdshgdfh"
-                )
-            }) {
-                Text(text = "Create data")
-            }
     //    }
+        Button(
+            onClick = {
+            // scan()
+            viewModel.insertProduct(
+                "Product ${productStateList.value.size + 1}", "dfasgsdfgdshgdfh"
+            )
+        }) {
+            Text(text = "Create data")
+        }
     }
 }
 
