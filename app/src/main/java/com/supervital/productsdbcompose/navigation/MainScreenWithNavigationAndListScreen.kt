@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.supervital.feature.screens.about.AboutScreen
+import com.supervital.feature.screens.contacts.ContactsScreen
 import com.supervital.feature.screens.home.HomeScreen
 import com.supervital.feature.screens.products.ProductsScreen
 import com.supervital.feature.screens.weather.WeatherScreen

@@ -2,8 +2,9 @@ package com.supervital.data.di
 
 import android.app.Application
 import androidx.room.Room
-import com.supervital.data.database.ProductsDb
+import com.supervital.data.database.StorageDb
 import com.supervital.data.database.dao.ProductsDao
+import com.supervital.data.database.dao.UsersDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,14 +17,17 @@ class ModuleDB {
 
     @Provides
     @Singleton
-    fun provideMainDb(app: Application) : ProductsDb {
+    fun provideStorageDb(app: Application) : StorageDb {
         return Room.databaseBuilder(
             app,
-            ProductsDb::class.java,
-            "products.db"
+            StorageDb::class.java,
+            "storage.db"
         ).build()
     }
 
     @Provides
-    fun provideProductDao(productsDb: ProductsDb) : ProductsDao = productsDb.dao
+    fun provideProductsDao(storageDb: StorageDb) : ProductsDao = storageDb.productsDao
+
+    @Provides
+    fun provideUsersDao(storageDb: StorageDb) : UsersDao = storageDb.userDao
 }

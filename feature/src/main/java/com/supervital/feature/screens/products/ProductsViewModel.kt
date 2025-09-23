@@ -4,22 +4,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.supervital.domain.models.ProductInfo
 import com.supervital.domain.usecase.ProductCreateUseCase
-import com.supervital.domain.usecase.ProductGetListUseCase
+import com.supervital.domain.usecase.ProductsGetListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
-    private val productGetListUseCase: ProductGetListUseCase,
+    private val productsGetListUseCase: ProductsGetListUseCase,
     private val productCreateUseCase: ProductCreateUseCase
 ) : ViewModel() {
 
-    fun getData() = productGetListUseCase.getAllProducts()
+    fun getData() = productsGetListUseCase()
 
     fun insertProduct(nameProduct: String, numberQR: String) {
         viewModelScope.launch {
-            productCreateUseCase.insertProduct(
+            productCreateUseCase(
                 ProductInfo(
                     id = -1,
                     name = nameProduct,

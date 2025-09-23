@@ -1,12 +1,12 @@
 package com.supervital.domain.usecase
 
 import com.supervital.domain.models.ProductInfo
-import com.supervital.domain.repository.RepositoryProduct
+import com.supervital.domain.repository.ProductsRepository
 import javax.inject.Inject
 
 class ProductCreateUseCase @Inject constructor(
-    private val repositoryProduct: RepositoryProduct
+    private val productsRepository: ProductsRepository
 ) {
-    suspend fun insertProduct(productInfo: ProductInfo)
-        = repositoryProduct.insertProduct(productInfo)
+    suspend operator fun invoke(productInfo: ProductInfo)
+        = productsRepository.insertProduct(productInfo)
 }

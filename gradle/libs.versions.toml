@@ -21,6 +21,7 @@ runtimeLivedata = "1.8.0-beta01"
 lifecycle = "2.8.7"
 lifecycleViewmodelComposeAndroid = "2.8.7"
 runtimeLivedataVersion = "1.9.1"
+foundationLayout = "1.9.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -60,6 +61,7 @@ androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtim
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedataVersion" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

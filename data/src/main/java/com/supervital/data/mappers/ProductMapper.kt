@@ -3,7 +3,7 @@ package com.supervital.data.mappers
 import com.supervital.data.database.entries.ProductEntry
 import com.supervital.domain.models.ProductInfo
 
-const val BAD_ID = -1
+private const val BAD_ID = -1
 
 fun ProductEntry.map(): ProductInfo {
     val id = this.id ?: BAD_ID

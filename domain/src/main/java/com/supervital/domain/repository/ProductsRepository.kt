@@ -3,7 +3,7 @@ package com.supervital.domain.repository
 import com.supervital.domain.models.ProductInfo
 import kotlinx.coroutines.flow.Flow
 
-interface RepositoryProduct {
+interface ProductsRepository {
 
     suspend fun insertProduct(product: ProductInfo)
 

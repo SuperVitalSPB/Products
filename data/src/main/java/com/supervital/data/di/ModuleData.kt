@@ -1,8 +1,11 @@
 package com.supervital.data.di
 
 import com.supervital.data.database.dao.ProductsDao
-import com.supervital.data.repository.RepositoryProductImpl
-import com.supervital.domain.repository.RepositoryProduct
+import com.supervital.data.database.dao.UsersDao
+import com.supervital.data.repository.ProductsRepositoryImpl
+import com.supervital.data.repository.UsersRepositoryImpl
+import com.supervital.domain.repository.ProductsRepository
+import com.supervital.domain.repository.UsersRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +18,11 @@ class ModuleData {
 
     @Provides
     @Singleton
-    fun provideRepositoryProduct(productsDao: ProductsDao): RepositoryProduct =
-        RepositoryProductImpl(productsDao = productsDao)
+    fun provideProductRepository(productsDao: ProductsDao): ProductsRepository =
+        ProductsRepositoryImpl(productsDao = productsDao)
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(usersDao: UsersDao): UsersRepository  =
+        UsersRepositoryImpl(usersDao = usersDao)
 }

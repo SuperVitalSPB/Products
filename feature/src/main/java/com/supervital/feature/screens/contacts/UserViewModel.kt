@@ -1,21 +1,30 @@
-package com.example.metanitdatabase
+package com.supervital.feature.screens.contacts
 
 import android.app.Application
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.supervital.domain.models.UserInfo
+import com.supervital.domain.usecase.UserCreateUseCase
+import com.supervital.domain.usecase.UserDeleteUseCase
+import com.supervital.domain.usecase.UserGetCountUseCase
+import com.supervital.domain.usecase.UsersGetListUseCase
 import com.supervital.feature.R
-import com.supervital.feature.screens.contacts.ResultCheck
-import com.supervital.feature.screens.contacts.User
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UserViewModel(val application: Application) : ViewModel() {
-    val userList: LiveData<List<User>>
-    private val repository: UserRepository
+@HiltViewModel
+class UserViewModel @Inject constructor(
+    application: Application,
+    private val userCreateUseCase: UserCreateUseCase,
+    private val userDeleteUseCase: UserDeleteUseCase,
+    private val userGetCountUseCase: UserGetCountUseCase,
+    private val usersGetListUseCase: UsersGetListUseCase
+) : ViewModel() {
     var userName = mutableStateOf("")
     var resultCheck = mutableStateOf(Any())
     var userAge = mutableStateOf("")
@@ -24,14 +33,7 @@ class UserViewModel(val application: Application) : ViewModel() {
 
     val getStringUserNameExists = application.getString(R.string.user_name_exists)
 
-    init {
-        // Строит базу данных (если она еще не существует)
-        val userDb = UserRoomDatabase.getInstance(application)
-        val userDao = userDb.userDao
-
-        repository = UserRepository(userDao)
-        userList = repository.userList
-    }
+    fun getUsers() = usersGetListUseCase()
 
     fun changeName(value: String) {
         userName.value = value
@@ -45,7 +47,7 @@ class UserViewModel(val application: Application) : ViewModel() {
             return
         }
         viewModelScope.launch (Dispatchers.IO ) {
-            val isError = repository.getCountUsers(userName.value).get(0) != 0
+            val isError = userGetCountUseCase(userName.value) != 0
             _foundUsers.postValue(isError)
             if (isError && resultCheck.value is ResultCheck.ResultOk) {
                 resultCheck.value = ResultCheck.NameExists()
@@ -69,20 +71,18 @@ class UserViewModel(val application: Application) : ViewModel() {
         }
     }
 
-    fun addUser() {
-        repository.addUser(User(userName.value, userAge.value.toInt()))
+    fun addUser(name: String, age: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userCreateUseCase(UserInfo( -1, name, age.toInt()))
+        }
     }
 
-    fun deleteUser(id: Int) {
-        repository.deleteUser(id)
+    fun deleteUser(user_id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userDeleteUseCase(user_id)
+        }
     }
 
-}
-
-class UserViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return UserViewModel(application) as T
-    }
 }
 
 fun String.isNumeric(): Boolean {

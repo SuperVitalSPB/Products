@@ -1,7 +1,7 @@
 package com.supervital.domain.models
 
-data class ProductInfo(
+data class UserInfo (
     val id: Int,
     val name: String,
-    val numberQR: String
+    val age: Int
 )

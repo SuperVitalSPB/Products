@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.lifecycle.viewmodel.compose.android)
+    implementation(libs.androidx.compose.foundation.layout)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
