@@ -2,14 +2,12 @@ package com.supervital.feature.screens.contacts
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
@@ -43,7 +41,9 @@ fun ContactsScreen(vm: UserViewModel = hiltViewModel()) {
 
     val focusRequester = remember { FocusRequester() }
 
-    Column {
+    Column (
+        modifier = Modifier.height(1.dp)
+    ) {
         OutlinedTextField(
             value = name,
             label = { Text("Name") },
@@ -93,7 +93,7 @@ fun ContactsScreen(vm: UserViewModel = hiltViewModel()) {
                 fontSize = 24.sp
             )
         }
-
+        UserTitleRow()
         UserList(
             users = userList.value,
             delete = { vm.deleteUser(it) }
@@ -104,23 +104,11 @@ fun ContactsScreen(vm: UserViewModel = hiltViewModel()) {
 @Composable
 fun UserList(users: List<UserInfo>,
              delete: (Int) -> Unit) {
-    Box(
-        modifier = Modifier
-            .width(900.dp)
-            .fillMaxSize()
-            .padding(bottom = 16.dp)
-    ) {
-        LazyColumn(
-            modifier = Modifier
-                .matchParentSize()
-                .padding(top = 15.dp)
-        ) {
-            item {UserTitleRow() }
+        LazyColumn {
             items(users) { user ->
                 UserRow(user) { delete(user.id) }
             }
         }
-    }
 }
 
 @Composable
